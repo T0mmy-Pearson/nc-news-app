@@ -13,6 +13,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(42, 27, 27, 0.1);
+}
+.header h1 {
+  font-family: "Zen Tokyo Zoo", system-ui;
+  font-size: 4em;
+  line-height: .90;
+  margin: 0;
+}
+.home-page-hero{
+  display: flex;
+  background-color: #f2f2f6;
+  flex-direction: column;
+  text-justify: newspaper;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(42, 27, 27, 0.1);
+}
 a {
   font-weight: 500;
   color: #000000;
@@ -25,7 +49,6 @@ a:hover {
 body {
   margin: 10px;
   display: flex;
-  place-items: center;
   min-width: 100vw;
   min-height: 100vh;
 }
@@ -86,6 +109,27 @@ img {
 
 }
 
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  font-size: .8em;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(42, 27, 27, 0.1);
+  
+}
+.footer a {
+  font-weight: 500;
+  color: #000000;
+  text-decoration: inherit;
+}
+.footer a:hover {
+  color: #f2f2f6;
+}
+.footer a:visited {
+  color: #000000;
+}
 
 /* Dynamic formats */
 @media (prefers-color-scheme: light) {
@@ -115,4 +159,46 @@ img {
     flex: 1 1 100%;
     max-width: 100%;
   }
+
+  /* navbar mobile */
+
+ .navbar {
+    border-radius: 0;
+    margin-bottom: 1rem;
+  }
+  .navbar-brand {
+    font-size: 1.3em;
+  }
+  .navbar-nav .nav-link {
+    margin-right: 0;
+    font-size: 1em;
+    padding: 0.7em 0;
+  }
+
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
 }
