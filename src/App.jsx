@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import axios from 'axios'
 import './index.css'
 import ArticleList from './components/ArticleList';
+import ArticlePage from './routes/ArticlePage';
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -27,6 +28,7 @@ function App() {
     <Routes>
 
       <Route path="/articles" element={<ArticleList articles={articles}/>} />
+      <Route path="/articles/:article_id" element={<ArticlePage />}/>
 
     </Routes>
     </>
