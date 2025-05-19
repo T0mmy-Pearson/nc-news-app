@@ -1,13 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import { Routes, Route } from "react-router-dom";
+import axios from 'axios'
+import './index.css'
+import ArticleList from './components/ArticleList';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+      setLoading(true)
+  
+      axios.get("https://nc-news-api-g9yq.onrender.com/api/articles")
+      .then((res) => {
+        setArticles(res.data.articles)
+      })
+      .catch((err) => {
+        setError(true)
+      })
+      .finally(() => setLoading(false))
+    }, [])
 
   return (
     <>
+    <Routes>
+
+      <Route path="/articles" element={<ArticleList articles={articles}/>} />
+
+    </Routes>
     </>
   )
 }
