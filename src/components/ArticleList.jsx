@@ -12,6 +12,7 @@ export default function ArticleList({ articles, setArticles }) {
           return (
             <ArticleCard
               key={article.article_id}
+              article_id={article.article_id}
               title={article.title}
               topic={article.topic}
               author={article.author}
