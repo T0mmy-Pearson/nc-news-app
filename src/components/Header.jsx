@@ -6,7 +6,10 @@ export default function Header() {
   return (
     <>
     <header className="header">
-      <h1><NavLink to="/">NC News</NavLink></h1>
+      <h1><NavLink to="/"
+      style={({ isActive })=> ({
+    background: isActive ? "none" : "none",
+  })}  >NC News</NavLink></h1>
       <NavbarC/>
     </header>
     </>
