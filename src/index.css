@@ -141,6 +141,19 @@ img {
   border: 1px solid #000000;
   margin-bottom: 1rem;
 }
+/* Votes */
+.votes-container {
+  display: flex;
+  font-size: large;
+
+}
+
+.votes-container button {
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: 20px;
+}
+
 /* Footer */
 .footer {
   display: flex;

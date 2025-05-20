@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
-import CommentList from "../components/CommentList";
 import CommentsSection from "../components/CommentsSection";
+import Votes from "../components/Votes";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false)   
-  
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     setLoading(true);
 
@@ -33,23 +33,21 @@ export default function ArticlePage() {
 
   return (
     <>
-    <Card className="m-4">
+      <Card className="m-4">
         <h2>{article.title}</h2>
-      <Card.Img variant="top" src={article.article_img_url} alt="article" />
-      <Card.Body>
-        <Card.Subtitle className="mb-2 text-muted">
-          by {article.author} | {article.created_at}
-        </Card.Subtitle>
-        <Card.Text>{article.body}</Card.Text>
-        <span>
-            <i className="fa-solid fa-hand-point-up"></i> {article.votes}
-          </span>
+        <Card.Img variant="top" src={article.article_img_url} alt="article" />
+        <Card.Body>
+          <Card.Subtitle className="mb-2 text-muted">
+            by {article.author} | {article.created_at}
+          </Card.Subtitle>
+          <Card.Text>{article.body}</Card.Text>
+          <Votes article_id={article.article_id} initialVotes={article.votes} />
           <span>
-            <i className="fa-solid fa-comment"></i> {article.commentsNum}
+            <i className="fa-solid fa-comment"></i> {article.comment_count}
           </span>
-      </Card.Body>
-    </Card>
-    <CommentsSection article_id={article_id} />
+        </Card.Body>
+      </Card>
+      <CommentsSection article_id={article_id} />
     </>
   );
 }
