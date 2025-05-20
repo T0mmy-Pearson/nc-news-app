@@ -10,13 +10,12 @@ import Footer from './components/Footer';
 
 function App() {
 
-
   return (
     <>
     <Header/>
     <Routes>
       <Route path="/" element={<HomePage/>}/>
-      <Route path="/articles" element={<ArticleList />} />
+      <Route path="/articles" element={<ArticleList/>} />
       <Route path="/articles/:article_id" element={<ArticlePage />}/>
     </Routes>
     <Footer/>
