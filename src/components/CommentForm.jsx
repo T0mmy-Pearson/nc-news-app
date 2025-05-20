@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+
+const { user } = useContext(UserContext);
 
 export default function CommentForm({ article_id }) {
   const [comment, setComment] = useState('')
