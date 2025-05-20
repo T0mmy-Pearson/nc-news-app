@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
-import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
-const { user } = useContext(UserContext);
-
 export default function CommentForm({ article_id }) {
+  const { user } = useContext(UserContext);
   const [comment, setComment] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitting(true)
     setError(null)
+    setSuccess(false)
 
     axios.post(`https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}/comments`, {
-      username: "tickle122",
+      username: user.username,
       body: comment
     })
     .then(() => {
       setComment('')
+      setSuccess(true)
     })
     .catch(() => {
       setError('Failed to post comment.')
@@ -42,6 +43,7 @@ export default function CommentForm({ article_id }) {
         {submitting ? 'Posting...' : 'Post Comment'}
       </button>
       {error && <div className="error">{error}</div>}
+      {success && <div className="success">Comment posted!</div>}
     </form>
   )
 }
