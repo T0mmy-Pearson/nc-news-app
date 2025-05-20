@@ -136,6 +136,14 @@ img {
   font-size: 1em;
   margin: 0;
 }
+.comment-card button {
+  background-color: #000000;
+  padding: 0.5rem;
+  border-radius: 20px;
+  border: none;
+  font-size: .75em;
+  width: 50%;
+}
 
 .comment-form {
   display: flex;
