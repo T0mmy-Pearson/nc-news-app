@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
+import CommentList from "../components/CommentList";
+import CommentsSection from "../components/CommentsSection";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false)   
-
-  console.log(article_id);
   
   useEffect(() => {
     setLoading(true);
@@ -19,10 +19,9 @@ export default function ArticlePage() {
     axios
       .get(`https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}`)
       .then((res) => {
-        console.log(res.data);
         setArticle(res.data);
       })
-      .catch((err) => {
+      .catch((error) => {
         setError(true);
       })
       .finally(() => setLoading(false));
@@ -33,6 +32,7 @@ export default function ArticlePage() {
   if (!article) return <div>Article not found!</div>;
 
   return (
+    <>
     <Card className="m-4">
         <h2>{article.title}</h2>
       <Card.Img variant="top" src={article.article_img_url} alt="article" />
@@ -49,5 +49,7 @@ export default function ArticlePage() {
           </span>
       </Card.Body>
     </Card>
+    <CommentsSection article_id={article_id} />
+    </>
   );
 }
