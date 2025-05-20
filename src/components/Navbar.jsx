@@ -15,7 +15,7 @@ export default function NavbarC() {
   }
 }
   return (
-     <Navbar bg="light" expand="md" className="mb-4 shadow-sm rounded" className="topnav">
+     <Navbar bg="light" expand="md" className="mb-4 shadow-sm rounded topnav">
       <Container>
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav">
