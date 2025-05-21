@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { UserContext } from "../contexts/UserContext";
 
-export default function CommentForm({ article_id }) {
+export default function CommentForm({ article_id, onCommentPosted }) {
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -22,6 +22,7 @@ export default function CommentForm({ article_id }) {
     .then(() => {
       setComment('')
       setSuccess(true)
+        if (onCommentPosted) setTimeout(onCommentPosted, 300)
     })
     .catch(() => {
       setError('Failed to post comment.')
@@ -43,7 +44,7 @@ export default function CommentForm({ article_id }) {
         {submitting ? 'Posting...' : 'Post Comment'}
       </button>
       {error && <div className="error">{error}</div>}
-      {success && <div className="success">Comment posted!</div>}
+      {success && <h4 className="success">Comment posted!</h4>}
     </form>
   )
 }

@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
 import Stack from 'react-bootstrap/Stack'
+import dayjs from 'dayjs';
+
+dayjs().format()
 
 
-export default function ArticleCard({ article_id, image, title, topic, author, posted, votes, commentsNum}) {
+export default function ArticleCard({ article_id, image, title, author, posted, votes, commentsNum}) {
 
   return (
     
@@ -19,7 +22,7 @@ export default function ArticleCard({ article_id, image, title, topic, author, p
         <Card.Img variant="top" src={image} alt="article image" as={Image} fluid />
         </Link>
         <Card.Text>
-          <small className="text-muted">Posted: {posted}</small>
+          <small className="text-muted">{dayjs(posted).format('D MMM YYYY')}</small>
         </Card.Text>
         <Stack direction="horizontal" gap={3}>
           <span>
