@@ -5,6 +5,7 @@ import ArticlePage from './Pages/ArticlePage';
 import HomePage from './Pages/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ErrPage from './Pages/ErrPage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path="/articles" element={<ArticleList/>} />
       <Route path="/articles/topics/:topic" element={<ArticleList/>} />
       <Route path="/articles/:article_id" element={<ArticlePage />}/>
+      <Route path="*" element={<ErrPage />} />
     </Routes>
     <Footer/>
     </>

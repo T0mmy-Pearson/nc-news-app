@@ -3,8 +3,8 @@ import CommentCard from './CommentCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export default function CommentList({ article_id }) {
-    const [comments, setComments] = useState([])
+export default function CommentList({ article_id, comments }) {
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 

@@ -25,13 +25,21 @@ export default function ArticleList() {
 
     axios
       .get(searchURL)
-      .then((res) => {
-        setArticlesToRead(res.data.articles);
+      .then((res) => {        
+         if (res.data.articles.length === 0) {
+          setError("No articles found for this topic.");
+        } else {
+          setArticlesToRead(res.data.articles);
+        }
       })
-      .catch(() => {
-        setError(true);
+      .catch((err) => {
+        if (err.response && err.response.status === 404) {
+          setError("Topic not found!");
+        } else {
+          setError("Something went wrong!");
+        }
       })
-      .finally(() => setLoading(false));
+        .finally(() => setLoading(false));
   }, [topic, sort_by, order]);
 
   function handleSortChange(e) {
@@ -41,8 +49,8 @@ export default function ArticleList() {
     });
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong!</p>;
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return <h2>{error}</h2>;
 
   return (
     <section className="article-list">

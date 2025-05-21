@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from "../contexts/UserContext";
 import axios from 'axios';
+import dayjs from 'dayjs';
+
+dayjs().format()
 
 export default function CommentCard({ comment, onDelete }) {
   const { user } = useContext(UserContext);
@@ -26,7 +29,7 @@ export default function CommentCard({ comment, onDelete }) {
     <div className="comment-card">
       <strong>{comment.author}</strong>
       <p>{comment.body}</p>
-      <small>{comment.created_at}</small>
+      <small>{dayjs(comment.created_at).format('D MMM YYYY, HH:mm')}</small>
       {user.username === comment.author && (
         <button
           onClick={handleDelete}
