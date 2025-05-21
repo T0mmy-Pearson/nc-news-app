@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function ArticleList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [articlesToRead, setArticlesToRead] = useState([]);
+  const { topic } = useParams();
 
   useEffect(() => {
     setLoading(true);
+    setError(false);
+    let URL= "https://nc-news-api-g9yq.onrender.com/api/articles";
+    if (topic) {
+      URL += `?topic=${topic}`;
+    }
     axios
-      .get("https://nc-news-api-g9yq.onrender.com/api/articles")
+      .get(URL)
       .then((res) => {
         setArticlesToRead(res.data.articles);
       })
@@ -18,7 +25,7 @@ export default function ArticleList() {
         setError(true);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [topic]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong!</p>;
