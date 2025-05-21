@@ -27,7 +27,6 @@ export default function TopicSideBar() {
           All
         </ListGroup.Item>
         {topics.map((t) => (
-          console.log(t.slug),
           <ListGroup.Item
             key={t.slug}
             as={Link}

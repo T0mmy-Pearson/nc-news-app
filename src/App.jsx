@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
-import axios from 'axios'
 import './index.css'
 import ArticleList from './components/ArticleList';
-import ArticlePage from './routes/ArticlePage';
-import HomePage from './routes/HomePage';
+import ArticlePage from './Pages/ArticlePage';
+import HomePage from './Pages/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
