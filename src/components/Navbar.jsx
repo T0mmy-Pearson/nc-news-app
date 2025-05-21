@@ -6,14 +6,7 @@ import Container from "react-bootstrap/Container";
 
 export default function NavbarC() {
 
-    function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
+
   return (
      <Navbar bg="light" expand="md" className="mb-4 shadow-sm rounded topnav">
       <Container>
@@ -22,6 +15,9 @@ export default function NavbarC() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/articles">
               Articles
+            </Nav.Link>
+            <Nav.Link as={Link} to="/articles">
+              Profile
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

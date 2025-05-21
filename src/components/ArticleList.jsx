@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export default function ArticleList() {
   const [loading, setLoading] = useState(true);
@@ -9,15 +9,22 @@ export default function ArticleList() {
   const [articlesToRead, setArticlesToRead] = useState([]);
   const { topic } = useParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort_by = searchParams.get("sort_by") || "created_at";
+  const order = searchParams.get("order") || "desc";
+
   useEffect(() => {
     setLoading(true);
     setError(false);
-    let URL= "https://nc-news-api-g9yq.onrender.com/api/articles";
-    if (topic) {
-      URL += `?topic=${topic}`;
-    }
+    let searchURL= "https://nc-news-api-g9yq.onrender.com/api/articles";
+    const params = [];
+    if (topic) params.push(`topic=${topic}`);
+    if (sort_by) params.push(`sort_by=${sort_by}`);
+    if (order) params.push(`order=${order}`);
+    if (params.length) searchURL += "?" + params.join("&");
+
     axios
-      .get(URL)
+      .get(searchURL)
       .then((res) => {
         setArticlesToRead(res.data.articles);
       })
@@ -25,7 +32,14 @@ export default function ArticleList() {
         setError(true);
       })
       .finally(() => setLoading(false));
-  }, [topic]);
+  }, [topic, sort_by, order]);
+
+  function handleSortChange(e) {
+    setSearchParams({
+      sort_by: e.target.form.sort_by.value,
+      order: e.target.form.order.value,
+    });
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong!</p>;
@@ -33,6 +47,23 @@ export default function ArticleList() {
   return (
     <section className="article-list">
       <h1>Articles</h1>
+      <form className="sort-form" onChange={handleSortChange}>
+        <label>
+          Sort by:{" "}
+          <select name="sort_by" defaultValue={sort_by}>
+            <option value="created_at">Date</option>
+            <option value="comment_count">Comments</option>
+            <option value="votes">Votes</option>
+          </select>
+        </label>
+        <label>
+          Order:{" "}
+          <select name="order" defaultValue={order}>
+            <option value="desc">High to Low</option>
+            <option value="asc">Low to High</option>
+          </select>
+        </label>
+      </form>
       <div className="article-list-container">
         {articlesToRead.map((article) => (
           <ArticleCard
