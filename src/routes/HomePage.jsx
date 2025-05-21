@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+
+import TopicSideBar from '../components/TopicSideBar'
 
 export default function HomePage() {
   return (
@@ -11,6 +11,7 @@ export default function HomePage() {
         <h3>Explore our curated range of topics and stay updated with the current events.</h3>
         <h3>Click on the Articles tab to view all articles.</h3>
     </section>
+    <TopicSideBar/>
     </>
   )
 }
