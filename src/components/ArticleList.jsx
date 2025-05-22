@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
-import axios from "axios";
+import { fetchArticles } from "../../../api";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export default function ArticleList() {
@@ -16,15 +16,8 @@ export default function ArticleList() {
   useEffect(() => {
     setLoading(true);
     setError(false);
-    let searchURL= "https://nc-news-api-g9yq.onrender.com/api/articles";
-    const params = [];
-    if (topic) params.push(`topic=${topic}`);
-    if (sort_by) params.push(`sort_by=${sort_by}`);
-    if (order) params.push(`order=${order}`);
-    if (params.length) searchURL += "?" + params.join("&");
 
-    axios
-      .get(searchURL)
+    fetchArticles(topic, sort_by, order)
       .then((res) => {        
          if (res.data.articles.length === 0) {
           setError("No articles found for this topic.");

@@ -22,11 +22,7 @@ export default function Votes({ article_id, initialVotes }) {
     setVoteError(null);
     localStorage.setItem(`vote_${article_id}`, newVote);
 
-    axios
-      .patch(
-        `https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}`,
-        { inc_votes: voteChange }
-      )
+patchArticleVotes(article_id, voteChange)
       .catch(() => {
         setUserVote(userVote);
         setVoteError("Failed to update vote. Please try again.");

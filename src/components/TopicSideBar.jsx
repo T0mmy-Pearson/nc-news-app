@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
-import axios from "axios";
+
+import { fetchTopics } from "../../../api";
 
 export default function TopicSideBar() {
   const [topics, setTopics] = useState([]);
   const { topic } = useParams();
 
   useEffect(() => {
-    axios
-      .get("https://nc-news-api-g9yq.onrender.com/api/topics")
+      fetchTopics()
       .then((res) => setTopics(res.data.topics))
       .catch(() => setTopics([]));
   }, []);

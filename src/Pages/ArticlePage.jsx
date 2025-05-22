@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { fetchArticleById } from "../../../api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -16,8 +16,7 @@ export default function ArticlePage() {
   useEffect(() => {
     setLoading(true);
 
-    axios
-      .get(`https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}`)
+    fetchArticleById(article_id)
       .then((res) => {
         setArticle(res.data);
       })

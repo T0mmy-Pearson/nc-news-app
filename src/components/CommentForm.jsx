@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import axios from 'axios'
 import { UserContext } from "../contexts/UserContext";
+import { postComment } from '../../../api';
 
 export default function CommentForm({ article_id, onCommentPosted }) {
   const { user } = useContext(UserContext);
@@ -15,7 +15,7 @@ export default function CommentForm({ article_id, onCommentPosted }) {
     setError(null)
     setSuccess(false)
 
-    axios.post(`https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}/comments`, {
+    postComment(article_id, {
       username: user.username,
       body: comment
     })

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from "../contexts/UserContext";
-import axios from 'axios';
+import { deleteComment } from '../../../api';
 import dayjs from 'dayjs';
 
 dayjs().format()
@@ -14,7 +14,7 @@ export default function CommentCard({ comment, onDelete }) {
   const handleDelete = () => {
     setDeleting(true);
     setError(null);
-    axios.delete(`https://nc-news-api-g9yq.onrender.com/api/comments/${comment.comment_id}`)
+    deleteComment(comment.comment_id)
       .then(() => {
         setDeleted(true);
         if (onDelete) onDelete(comment.comment_id);

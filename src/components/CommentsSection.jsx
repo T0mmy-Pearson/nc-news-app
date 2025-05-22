@@ -2,21 +2,14 @@ import React from "react";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchComments } from "../../../api";
 
 export default function CommentsSection({ article_id }) {
   const [comments, setComments] = useState([]);
 
-  const fetchComments = () => {
-    axios
-      .get(
-        `https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}/comments`
-      )
-      .then((res) => setComments(res.data.comments));
-  };
-
   useEffect(() => {
-    fetchComments();
+    fetchComments(article_id)
+    .then((res) => setComments(res.data.comments));  
   }, [article_id]);
 
   return (

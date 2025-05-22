@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentCard from './CommentCard'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { fetchComments } from '../../../api'
 
 export default function CommentList({ article_id, comments }) {
 
@@ -10,8 +10,7 @@ export default function CommentList({ article_id, comments }) {
 
     useEffect(() => {
       setLoading(true)
-  
-      axios.get(`https://nc-news-api-g9yq.onrender.com/api/articles/${article_id}/comments`)
+      fetchComments(article_id)
       .then((res) => {
         setComments(res.data.comments)
       })
