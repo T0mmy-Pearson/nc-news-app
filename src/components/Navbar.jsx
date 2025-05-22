@@ -1,27 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
+import React, { useState } from "react";
+import TopicsideBar from "./TopicsideBar";
 
 export default function NavbarC() {
+  const [showLinks, setShowLinks] = useState(false);
 
+  const handleToggle = () => {
+    setShowLinks((prev) => !prev);
+  };
 
   return (
-     <Navbar bg="light" expand="md" className="mb-4 shadow-sm rounded topnav">
-      <Container>
-        <Navbar.Toggle aria-controls="main-navbar-nav" />
-        <Navbar.Collapse id="main-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/articles">
-              Articles
-            </Nav.Link>
-            <Nav.Link as={Link} to="/articles">
-              Profile
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <div className="topnav">
+        <a href="/" className="active">
+          <h1>NC News</h1>
+        </a>
+        <div
+          id="myLinks"
+          style={{ display: showLinks ? "flex" : "none" }}
+        >
+          <a href="/articles">Articles</a>
+          <a href="#about">Profile</a>
+        </div>
+        <a
+          href="#toggle"
+          className="icon"
+          onClick={(e) => {
+            e.preventDefault();
+            handleToggle();
+          }}
+        >
+          <i className="fa-solid fa-bars"></i>
+        </a>
+      </div>
+    </>
   );
 }

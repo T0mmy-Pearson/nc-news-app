@@ -16,7 +16,6 @@ export default function TopicSideBar() {
 
   return (
     <aside className="topic-sidebar">
-      <h4>Topics</h4>
       <ListGroup>
         <ListGroup.Item
           as={Link}
