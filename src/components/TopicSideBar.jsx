@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
-
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import { fetchTopics } from "../../../api";
 
 export default function TopicSideBar() {
   const [topics, setTopics] = useState([]);
-  const { topic } = useParams();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-      fetchTopics()
+    fetchTopics()
       .then((res) => setTopics(res.data.topics))
-      .catch(() => setTopics([]));
+      .catch(() => setTopics([]))
+      .finally(() => setLoading(false));
   }, []);
 
+  const handleRandomTopic = () => {
+    if (topics.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * topics.length);
+    const randomTopic = topics[randomIndex];
+    navigate(`/articles/topics/${randomTopic.slug}`);
+  };
+
   return (
-    <aside className="topic-sidebar">
-      <ListGroup>
-        <ListGroup.Item
-          as={Link}
-          to="/articles"
-          active={!topic}
-          action
-        >
-          All
-        </ListGroup.Item>
-        {topics.map((t) => (
-          <ListGroup.Item
-            key={t.slug}
-            as={Link}
-            to={`/articles/topics/${t.slug}`}
-            active={topic === t.slug}
-            action
-          >
-            {t.slug.charAt(0).toUpperCase() + t.slug.slice(1)}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+    <aside className="topic-sidebar" style={{ textAlign: "center" }}>
+      <Button
+        variant="primary"
+        onClick={handleRandomTopic}
+        disabled={loading || topics.length === 0}
+      >
+        {loading ? "Loading..." : "Go to Random Topic"}
+      </Button>
     </aside>
   );
 }

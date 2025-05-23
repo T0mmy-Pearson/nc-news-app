@@ -47,7 +47,7 @@ export default function ArticleList() {
 
   return (
     <section className="article-list">
-      <h1>Articles</h1>
+      <h2>Articles</h2>
       <form className="sort-form" onChange={handleSortChange}>
         <label>
           Sort by:{" "}

@@ -20,7 +20,11 @@ export default function NavbarC() {
           style={{ display: showLinks ? "flex" : "none" }}
         >
           <a href="/articles">Articles</a>
-          <a href="#about">Profile</a>
+          <button className="closebtn"
+            onClick={() => setShowLinks(false)}
+          >
+            &times;
+          </button>
         </div>
         <a
           href="#toggle"
