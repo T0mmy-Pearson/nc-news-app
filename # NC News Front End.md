@@ -1,6 +1,6 @@
 # NC News Front End
 
-[View the deployed app here](LINK)
+[View the deployed app here](https://ncnews-t0mmy-pearson.netlify.app/)
 
 ## Overview
 
