@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 import ArticleCardExplore from "./ArticleCardExplore";
-import { fetchArticles } from "../../../api"; 
+import { fetchArticles } from "../../../api";
 
 const FootballCarousel = () => {
-const [startIdx, setStartIdx] = useState(0);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(false);
-const [articles, setArticles] = useState([]);
+  const [startIdx, setStartIdx] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [numVisible, setNumVisible] = useState(
+    window.innerWidth <= 600 ? 1 : 3
+  );
 
-
- useEffect(() => {
+  useEffect(() => {
+    const handleResize = () => {
+      setNumVisible(window.innerWidth <= 600 ? 1 : 3);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+  useEffect(() => {
     setLoading(true);
     fetchArticles()
       .then((res) => {
@@ -20,14 +30,12 @@ const [articles, setArticles] = useState([]);
       })
       .finally(() => setLoading(false));
   }, []);
-  
-  
+
   const footballArticles = articles.filter(
     (article) => article.topic && article.topic.toLowerCase() === "football"
   );
 
-
-  const visibleArticles = footballArticles.slice(startIdx, startIdx +1);
+  const visibleArticles = footballArticles.slice(startIdx, startIdx + numVisible);
 
   const handlePrev = () => {
     setStartIdx((prev) => Math.max(prev - 1, 0));
@@ -49,41 +57,49 @@ const [articles, setArticles] = useState([]);
   }
 
   return (
-  <section className="home-page-explore">
-    <h2>Explore Our Football Articles</h2>
-    <div className="carousel-overlay-container" style={{ position: "relative", width: "100%", display: "flex", justifyContent: "center" }}>
-      <button
-        className="carousel-btn prev-btn"
-        onClick={handlePrev}
-        disabled={startIdx === 0}
-        aria-label="Previous"
+    <section className="home-page-explore">
+      <h2>Explore Our Football Articles</h2>
+      <div
+        className="carousel-overlay-container"
+        style={{
+          position: "relative",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
-        &#8592;
-      </button>
-      <div className="article-list-explore" style={{ width: "100%" }}>
-        {visibleArticles.map((article) => (
-          <ArticleCardExplore
-            key={article.article_id}
-            article_id={article.article_id}
-            image={article.article_img_url}
-            title={article.title}
-            author={article.author}
-            posted={article.created_at}
-            votes={article.votes}
-            commentsNum={article.comment_count}
-          />
-        ))}
+        <button
+          className="carousel-btn prev-btn"
+          onClick={handlePrev}
+          disabled={startIdx === 0}
+          aria-label="Previous"
+        >
+          &#8592;
+        </button>
+        <div className="article-list-explore" style={{ width: "100%" }}>
+          {visibleArticles.map((article) => (
+            <ArticleCardExplore
+              key={article.article_id}
+              article_id={article.article_id}
+              image={article.article_img_url}
+              title={article.title}
+              author={article.author}
+              posted={article.created_at}
+              votes={article.votes}
+              commentsNum={article.comment_count}
+            />
+          ))}
+        </div>
+        <button
+          className="carousel-btn next-btn"
+          onClick={handleNext}
+          disabled={startIdx + 2 >= footballArticles.length}
+          aria-label="Next"
+        >
+          &#8594;
+        </button>
       </div>
-      <button
-        className="carousel-btn next-btn"
-        onClick={handleNext}
-        disabled={startIdx + 1 >= footballArticles.length}
-        aria-label="Next"
-      >
-        &#8594;
-      </button>
-    </div>
-  </section>
+    </section>
   );
 };
 

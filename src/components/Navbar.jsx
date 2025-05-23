@@ -14,6 +14,7 @@ export default function NavbarC() {
         <a href="/" className="active">
           <h1>NC News</h1>
         </a>
+        <div className="tagline"><h3>Your one-stop shop for non-stop news</h3></div>
         <div
           id="myLinks"
           style={{ display: showLinks ? "flex" : "none" }}

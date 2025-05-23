@@ -24,7 +24,7 @@ const LatestArticlesList = () => {
   );
 
   return (
-    <section className="latest-articles-list home-page-hero">
+    <section className="latest-articles-list">
       <h2>Latest Articles</h2>
       <ul>
         {sortedArticles.slice(0, 5).map((article) => (

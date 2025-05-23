@@ -11,11 +11,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Header */
+.header {
+  display: block;
+  border-bottom: #fff solid 1px;
+
+}
+.header h1 {
+  font-family: "Zen Tokyo Zoo", system-ui;
+  font-size: 4em;
+  line-height: .90;
+  margin: 0;
+}
+.tagline {
+  line-height: .90;
+  font-weight: 100;
+  margin: 0;
+}
 /* Navbar */
 .topnav {
   overflow: hidden;
   position: relative;
-
+  display: flex;
+}
+.topnav h3 {
+  padding-top:1.5%;
+  padding-left: 1%;
+  font-weight: 100;
 }
 
 .topnav #myLinks {
@@ -48,32 +70,7 @@
   color: white;
 }
 
-
-/* Header */
-.header {
-  display: block;
-  padding: 1rem;
-
-}
-
-.header h1 {
-  font-family: "Zen Tokyo Zoo", system-ui;
-  font-size: 4em;
-  line-height: .90;
-  margin: 0;
-}
-
 /* homepage */
-
-.home-page-hero {
-  display: flex;
-  flex-direction: column;
-  text-justify: newspaper;
-  width: 80%;
-  justify-content: center;
-  padding: 2rem;
-  border-radius: 20px;
-}
 
 .home-list {
   display: flex;
@@ -93,7 +90,6 @@ a:hover {
 
 body {
   margin: 10px;
-  display: flex;
   min-width: 90vw;
   min-height: 100vh;
 }
@@ -113,18 +109,18 @@ h3 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 20px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: #f9b6ed;
 }
 
 button:focus,
@@ -135,15 +131,37 @@ button:focus-visible {
 /* Explore section */
 .image-overlay-container {
   position: relative;
+  width: 100%;
+}
+.article-list-explore {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .image-overlay-container img,
 .image-overlay-container .card-img-top {
   display: block;
-  width: 90%;
+  width: 100%;
   height: auto;
 }
 
+.overlay-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height:76%;
+  background: rgba(20, 20, 20, 0.7);
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+  box-sizing: border-box;
+  z-index: 2;
+}
 .overlay-title {
   position: absolute;
   bottom: 0;
@@ -159,6 +177,24 @@ button:focus-visible {
   margin: 0;
   font-size: 1.33em;
 }
+
+/* home page second tile */
+
+.home-page-second {
+  display: block;
+}
+
+/* latest-articles-list */
+.latest-articles-list {
+  flex-direction: row;
+  gap: 2rem;
+  list-style-type: none;
+}
+.latest-articles-list li {
+  list-style-type: none;
+text-decoration: underline;
+}
+
 /* Article Page */
 .article-list {
   display: flex;
@@ -184,11 +220,10 @@ button:focus-visible {
 /* TopicsSidebar */
 
 .topics-sidebar {
-  display: block;
+  float: right;
   width: 30%;
   padding-right: 15px;
   margin-right: 15px;
-
 }
 
 /* Comments */
@@ -335,8 +370,16 @@ button:focus-visible {
 
   /* Header Mobile */
   .header {
-    flex-direction: row;
+    flex-direction: column;
   }
+  .tagline {
+    align-content: center;
+    padding-top: 20%;
+  }
+  .header h3 {
+  font-weight: 100;
+  font-size: 1.3rem;
+}
 
   /* navbar mobile */
 .topnav {
@@ -345,7 +388,7 @@ button:focus-visible {
 }
 
 .topnav #myLinks {
-  display: none;
+
   background-color: #f9f9f9;
   border-radius: 10px;
   z-index: 1;
@@ -375,6 +418,14 @@ button:focus-visible {
 }
 
 /* explore section */
+.overlay-content {
+    padding: 0.5rem;
+    font-size: 0.95em;
+  }
+  .overlay-content h2 {
+    font-size: 1.1em;
+  }
+  
 
 .article-card-explore {
   display:inline;
@@ -417,7 +468,7 @@ button:focus-visible {
 .carousel-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-75%);
+  transform: translateY(0%);
   z-index: 2;
   background: rgba(249, 166, 166, 0);
   color: #fbf8f8;
@@ -426,7 +477,7 @@ button:focus-visible {
   padding: 0.5em 0.8em;
   border-radius: 50%;
   cursor: pointer;
-  transition: background 0.2s;
+
 }
 
 .carousel-btn:disabled {
@@ -436,10 +487,16 @@ button:focus-visible {
 
 .prev-btn {
   left: 10px;
+  z-index: 2;
 }
 
 .next-btn {
   right: 10px;
 }
-}
 
+.latest-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+}
