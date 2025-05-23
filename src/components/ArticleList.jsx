@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
-import { fetchArticles } from "../../../api";
+import { fetchArticles } from "../../api";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export default function ArticleList() {

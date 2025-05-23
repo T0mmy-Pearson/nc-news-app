@@ -2,7 +2,7 @@ import React from "react";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 import { useEffect, useState } from "react";
-import { fetchComments } from "../../../api";
+import { fetchComments } from "../../api";
 
 export default function CommentsSection({ article_id }) {
   const [comments, setComments] = useState([]);

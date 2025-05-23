@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentCard from './CommentCard'
 import { useState, useEffect } from 'react'
-import { fetchComments } from '../../../api'
+import { fetchComments } from '../../api'
 
 export default function CommentList({ article_id, comments }) {
 

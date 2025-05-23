@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchArticles } from "../../../api"; // Adjust the import path as necessary
+import { fetchArticles } from "../../api"; 
 
 const LatestArticlesList = () => {
   const [articles, setArticles] = useState([]);

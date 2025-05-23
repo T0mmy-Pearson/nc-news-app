@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { fetchTopics } from "../../../api";
+import { fetchTopics } from "../../api";
 
 export default function TopicSideBar() {
   const [topics, setTopics] = useState([]);

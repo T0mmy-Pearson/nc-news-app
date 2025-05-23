@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ArticleCardExplore from "./ArticleCardExplore";
-import { fetchArticles } from "../../../api";
+import { fetchArticles } from "../../api";
 
 const FootballCarousel = () => {
   const [startIdx, setStartIdx] = useState(0);

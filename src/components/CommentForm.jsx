@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from "../contexts/UserContext";
-import { postComment } from '../../../api';
+import { postComment } from '../../api';
 
 export default function CommentForm({ article_id, onCommentPosted }) {
   const { user } = useContext(UserContext);

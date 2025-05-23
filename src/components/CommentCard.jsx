@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from "../contexts/UserContext";
-import { deleteComment } from '../../../api';
+import { deleteComment } from '../../api';
 import dayjs from 'dayjs';
 
 dayjs().format()
