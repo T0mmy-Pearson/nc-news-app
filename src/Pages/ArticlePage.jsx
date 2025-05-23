@@ -1,5 +1,6 @@
 import React from "react";
 import { fetchArticleById } from "../../api";
+import dayjs from "dayjs";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -37,7 +38,7 @@ export default function ArticlePage() {
         <Card.Img variant="top" src={article.article_img_url} alt="article" />
         <Card.Body>
           <Card.Subtitle className="mb-2 text-muted">
-            by {article.author} | {article.created_at}
+            by {article.author} | {dayjs(article.created_at).format('D MMM YYYY')}
           </Card.Subtitle>
           <Card.Text>{article.body}</Card.Text>
           <Votes article_id={article.article_id} initialVotes={article.votes} />
