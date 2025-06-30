@@ -2,7 +2,7 @@ import React from 'react'
 
 import LatestArticlesList from '../components/LatestArticlesList'
 import FootballCarousel from '../components/FootballCarousel'
-import TopicSideBar from '../components/TopicsideBar'
+import TopicSideBar from '../components/TopicSideBar'
 
 export default function HomePage({ articles }) {
   return (

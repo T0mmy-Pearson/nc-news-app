@@ -25,7 +25,7 @@ export default function TopicSideBar() {
   return (
     <aside className="topic-sidebar" style={{ textAlign: "center" }}>
       <Button
-        variant="primary"
+        variant="dark"
         onClick={handleRandomTopic}
         disabled={loading || topics.length === 0}
       >

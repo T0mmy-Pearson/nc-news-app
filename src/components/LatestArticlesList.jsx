@@ -12,6 +12,8 @@ const LatestArticlesList = () => {
     fetchArticles()
       .then((res) => {
         setArticles(res.data.articles);
+        setError(false);
+        setLoading(true);
       })
       .catch((err) => {
         setError(true);
